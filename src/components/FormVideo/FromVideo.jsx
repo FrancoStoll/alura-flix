@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./formvideo.css";
+import { useVideos } from "../../hooks/useVideos";
 
 export const FormVideo = () => {
   const [title, setTitle] = useState("");
@@ -8,13 +9,24 @@ export const FormVideo = () => {
   const [video, setVideo] = useState("");
   const [description, setDescription] = useState("");
 
+  const { submitVideo } = useVideos();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!title || !category || !image || !video || !description) {
+      return alert("Complete los campos");
+    }
+    submitVideo({ title, category, image, video, description });
+    handleClean();
+  };
 
-    console.log({title,category,image,video,description})
-  }
-
+  const handleClean = () => {
+    setTitle("");
+    setCategory("");
+    setImage("");
+    setVideo("");
+    setDescription("");
+  };
 
   return (
     <div className="form-video">
@@ -28,7 +40,7 @@ export const FormVideo = () => {
             id="title"
             placeholder="titulo del video"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="input">
@@ -39,14 +51,14 @@ export const FormVideo = () => {
             id="category"
             placeholder="Inserte una categoria"
             value={category}
-            onChange={e => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
           >
             <option value="" disabled>
               --Selecione una categoria
             </option>
-            <option value="front end">front end</option>
-            <option value="back end">back end</option>
-            <option value="innovacion y gestion">innovacion y gestón</option>
+            <option value="FrontEnd">front end</option>
+            <option value="BackEnd">back end</option>
+            <option value="Gestion">innovacion y gestón</option>
           </select>
         </div>
 
@@ -58,7 +70,7 @@ export const FormVideo = () => {
             id="image"
             placeholder="link de la imagen"
             value={image}
-            onChange={e => setImage(e.target.value)}
+            onChange={(e) => setImage(e.target.value)}
           />
         </div>
 
@@ -70,7 +82,7 @@ export const FormVideo = () => {
             id="video"
             placeholder="link del video"
             value={video}
-            onChange={e => setVideo(e.target.value)}
+            onChange={(e) => setVideo(e.target.value)}
           />
         </div>
         <div className="input">
@@ -80,13 +92,15 @@ export const FormVideo = () => {
             id="description"
             placeholder="ingresa un description"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
 
         <div className="buttons">
           <button type="submit">GUARDAR</button>
-          <button type="button">LIMPIAR</button>
+          <button type="button" onClick={() => handleClean()}>
+            LIMPIAR
+          </button>
         </div>
       </form>
     </div>

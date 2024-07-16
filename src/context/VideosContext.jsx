@@ -37,12 +37,20 @@ export const VideosProvider = ({ children }) => {
     setVideos(updatedVideos);
   };
 
+  const submitVideo = async({title, category,image,link,description}) => {
+    await fetch('http://localhost:3000/videos', {
+      method: 'POST',
+      body: JSON.stringify({title,category,image,link,description})
+    })
+  }
+
   return (
     <VideosContext.Provider
       value={{
         videos: videos,
         setVideos: setVideos,
         eliminarVideo: eliminarVideo,
+        submitVideo:submitVideo
       }}
     >
       {children}
