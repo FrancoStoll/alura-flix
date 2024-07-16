@@ -4,15 +4,19 @@ const ModalContext = createContext({});
 
 // eslint-disable-next-line react/prop-types
 export const ModalProvider = ({ children }) => {
+  const [open, setOpen] = useState(false);
+  const [modalVideo, setModalVideo] = useState();
 
 
-    const [open, setOpen] = useState(false)
+  
 
   return (
     <ModalContext.Provider
       value={{
         open: open,
-        setOpen: setOpen
+        setOpen: setOpen,
+        modalVideo,
+        setModalVideo
       }}
     >
       {children}

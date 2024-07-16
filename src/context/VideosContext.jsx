@@ -37,12 +37,34 @@ export const VideosProvider = ({ children }) => {
     setVideos(updatedVideos);
   };
 
-  const submitVideo = async({title, category,image,link,description}) => {
-    await fetch('http://localhost:3000/videos', {
-      method: 'POST',
-      body: JSON.stringify({title,category,image,link,description})
-    })
-  }
+  const submitVideo = async ({ title, category, image, link, description }) => {
+    await fetch("http://localhost:3000/videos", {
+      method: "POST",
+      body: JSON.stringify({ title, category, image, link, description }),
+    });
+  };
+
+  const editVideo = async (video) => {
+    await fetch(`http://localhost:3000/videos/${video.id}`, {
+      method: "PUT",
+      body: JSON.stringify(video),
+    });
+
+    const updatedVideos = Object.entries(videos).reduce(
+      (acc, [category, videoList]) => {
+        acc[category] = videoList.map((item) => {
+          if (item.id === video.id) {
+            return video;
+          }
+          return item;
+        });
+        return acc;
+      },
+      {}
+    );
+
+    setVideos(updatedVideos);
+  };
 
   return (
     <VideosContext.Provider
@@ -50,7 +72,8 @@ export const VideosProvider = ({ children }) => {
         videos: videos,
         setVideos: setVideos,
         eliminarVideo: eliminarVideo,
-        submitVideo:submitVideo
+        submitVideo: submitVideo,
+        editVideo: editVideo,
       }}
     >
       {children}
