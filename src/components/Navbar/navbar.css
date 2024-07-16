@@ -1,0 +1,121 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+  padding: 0 3rem;
+}
+.background {
+  background: #262626;
+  border-bottom: 4px solid #2271d1;
+  box-shadow: 0px 5px 29px 0px rgba(34, 113, 209, 0.7);
+}
+
+.mobile {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile .casita img {
+  width: 30px;
+  height: 30px;
+}
+
+.mobile .add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  color: var(--Blue, rgba(34, 113, 209, 1));
+  border: 2px solid var(--Blue, rgba(34, 113, 209, 1));
+  border-radius: 50px;
+  width: auto;
+  padding: 0 1rem;
+  background: rgba(34, 113, 209, 0.24);
+}
+.mobile .add img {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+.mobile .add p {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 24px;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.button {
+  width: 180.13px;
+  height: 54px;
+  gap: 0px;
+  border-radius: 10px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+.home-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: #000000;
+  border: 2px solid var(--Blue, #2271d1);
+  color: var(--Blue, #2271d1);
+  box-shadow: 0px 0px 12px 4px #2271d1 inset;
+  font-family: Source Sans Pro;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.video-buton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 4px;
+  opacity: 0px;
+  background-color: transparent;
+  font-family: Source Sans Pro;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 24px;
+  text-align: center;
+  border: 2px solid rgba(245, 245, 245, 1);
+  color: #fff;
+}
+
+@media (max-width: 680px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: flex;
+  }
+}
+
+@media (max-width: 430px) {
+  .mobile .add {
+    padding: 1rem;
+  }
+  .mobile .add p {
+    display: none;
+  }
+  .navbar {
+    padding: 1rem;
+  }
+}
